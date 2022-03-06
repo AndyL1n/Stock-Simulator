@@ -11,7 +11,7 @@ import Alamofire
 public class StockViewModel {
     private let jsonFormatRequest: String = "https://quality.data.gov.tw/dq_download_json.php?nid=11549&md5_url=da96048521360db9f23a2b47c9c31155"
     
-    public var onUpdate: (() -> Void)?
+    public var onUpdate: (([Int]) -> Void)?
     public var timer = Timer()
     public var dataSource: [DisplayStockItem] = [DisplayStockItem(code: "代號",
                                                                   title: "商品",
@@ -42,10 +42,12 @@ public class StockViewModel {
     }()
     
     @objc func random() {
+        var updateIndex: [Int] = []
         for index in 1...(dataSource.count - 1) {
-            dataSource[index].random()
+            let success = dataSource[index].random()
+            if success { updateIndex.append(index) }
         }
-        onUpdate?()
+        onUpdate?(updateIndex)
     }
     
     public func getAllStockItems(complete: @escaping () -> Void) {

@@ -83,8 +83,8 @@ public struct DisplayStockItem {
         return dawnRaid.hasPrefix("-")
     }
     
-    mutating func random() {
-        guard Int.random(in: 1...2)/2 == 0 else { return }
+    mutating func random() -> Bool {
+        guard Int.random(in: 1...2)/2 == 0 else { return false }
         
         let closingPriceDouble = Double(closingPrice) ?? 0
         let lowestPrice = (closingPriceDouble * 0.9)
@@ -98,5 +98,6 @@ public struct DisplayStockItem {
         self.dawnRaid = String(format: "%.2f", dawnRaid)
         self.range = String(format: "%.2f%%", range)
         self.updateTime = Date().shortString
+        return true
     }
 }

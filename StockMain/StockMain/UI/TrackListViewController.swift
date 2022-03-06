@@ -10,6 +10,7 @@ import UIKit
 class TrackListViewController: UIViewController {
     @IBOutlet weak var sheetView: SpreadsheetView!
     
+    private var updateIndexPaths: [Int] = []
     private var viewModel: StockViewModel = {
         return StockViewModel()
     }()
@@ -33,7 +34,8 @@ class TrackListViewController: UIViewController {
         viewModel.getAllStockItems {
             self.sheetView.reloadData()
         }
-        viewModel.onUpdate = {
+        viewModel.onUpdate = { indexs in
+            self.updateIndexPaths = indexs
             self.sheetView.reloadData()
         }
     }
@@ -78,6 +80,9 @@ extension TrackListViewController: SpreadsheetViewDataSource {
             case 5:     cell.config(with: item.closingPrice, isTitle: isTitle)
             case 6:     cell.config(with: item.updateTime, isTitle: isTitle)
             default:    break
+            }
+            if updateIndexPaths.contains(indexPath.item) {
+                cell.flash()
             }
             return cell
         }
