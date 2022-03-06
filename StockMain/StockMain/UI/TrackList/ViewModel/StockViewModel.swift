@@ -13,6 +13,12 @@ public class StockViewModel {
     
     public var onUpdate: (([Int]) -> Void)?
     public var timer = Timer()
+    public var refreshTime: TimeInterval = 0.5 {
+        didSet {
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: refreshTime, target: self, selector: #selector(random), userInfo: nil, repeats: true)
+        }
+    }
     public var dataSource: [DisplayStockItem] = [DisplayStockItem(code: "代號",
                                                                   title: "商品",
                                                                   finalPrice: "成交",
@@ -21,13 +27,12 @@ public class StockViewModel {
                                                                   closingPrice: "昨收價",
                                                                   updateTime: "更新時間")]
     
-    private var timerInterval: TimeInterval = 1
     private var allStockItems: [RawStockItem] = [] {
         didSet {
             let unsortedList = allStockItems.filter { defaultCompanyList.contains($0.code) }
             let sortedList = unsortedList.sorted(by: { defaultCompanyList.firstIndex(of: $0.code)! < defaultCompanyList.firstIndex(of: $1.code)!}).map{ $0.displaySotckItem }
             dataSource.append(contentsOf: sortedList)
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(random), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: refreshTime, target: self, selector: #selector(random), userInfo: nil, repeats: true)
         }
     }
     

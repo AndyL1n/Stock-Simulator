@@ -26,6 +26,10 @@ class TrackListViewController: UIViewController {
     }
 
     private func setupUI() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem (
+            image: UIImage(named: "icon_setting"),
+            style: .done, target: self, action: #selector(settingAction))
+        
         sheetView.dataSource = self
         sheetView.register(StockTitleCell.self, forCellWithReuseIdentifier: StockTitleCell.id)
         sheetView.showsVerticalScrollIndicator = false
@@ -38,6 +42,11 @@ class TrackListViewController: UIViewController {
             self.updateIndexPaths = indexs
             self.sheetView.reloadData()
         }
+    }
+    
+    @objc func settingAction() {
+        let vc = SettingViewController.new(with: viewModel)
+        present(vc, animated: true, completion: nil)
     }
 }
 

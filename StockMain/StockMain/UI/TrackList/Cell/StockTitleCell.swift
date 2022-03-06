@@ -12,6 +12,7 @@ class StockTitleCell: Cell {
 
     private var label = UILabel()
     
+    private var vvv = UIView()
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -23,6 +24,10 @@ class StockTitleCell: Cell {
         label.lineBreakMode = .byWordWrapping
         label.backgroundColor = .clear
         contentView.addSubview(label)
+        
+//        vvv.frame = bounds
+//        vvv.backgroundColor = .blue
+//        contentView.addSubview(vvv)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -38,8 +43,9 @@ class StockTitleCell: Cell {
     public func flash() {
         borders.bottom = .solid(width: 3, color: .red)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            self.borders.bottom = .none
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001, execute: {
+////            self.borders.bottom = .none
+//            self.borders = .init(top: .none, bottom: .none, left: .none, right: .none)
+//        })
     }
 }
