@@ -8,7 +8,7 @@
 import UIKit
 
 class TrackListViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var sheetView: SpreadsheetView!
     
     private var viewModel: StockViewModel = {
         return StockViewModel()
