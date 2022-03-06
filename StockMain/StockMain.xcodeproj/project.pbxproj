@@ -32,6 +32,9 @@
 		A14045F127D4C76C0089E6E9 /* SpreadsheetView+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045D927D4C76C0089E6E9 /* SpreadsheetView+Touches.swift */; };
 		A14045F227D4C76C0089E6E9 /* SpreadsheetView+CirclularScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045DA27D4C76C0089E6E9 /* SpreadsheetView+CirclularScrolling.swift */; };
 		A14045F327D4C76C0089E6E9 /* SpreadsheetView+UIScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045DB27D4C76C0089E6E9 /* SpreadsheetView+UIScrollViewDelegate.swift */; };
+		A14045F727D4CC7B0089E6E9 /* StockTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045F527D4CC7B0089E6E9 /* StockTitleCell.swift */; };
+		A14045FA27D4D6DE0089E6E9 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045F927D4D6DE0089E6E9 /* Then.swift */; };
+		A14045FC27D4DB0E0089E6E9 /* Double+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14045FB27D4DB0E0089E6E9 /* Double+extension.swift */; };
 		A1C6638C27D48B0A00C4C193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6638B27D48B0A00C4C193 /* AppDelegate.swift */; };
 		A1C6639327D48B0A00C4C193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1C6639127D48B0A00C4C193 /* Main.storyboard */; };
 		A1C6639527D48B0C00C4C193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C6639427D48B0C00C4C193 /* Assets.xcassets */; };
@@ -70,6 +73,9 @@
 		A14045D927D4C76C0089E6E9 /* SpreadsheetView+Touches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpreadsheetView+Touches.swift"; sourceTree = "<group>"; };
 		A14045DA27D4C76C0089E6E9 /* SpreadsheetView+CirclularScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpreadsheetView+CirclularScrolling.swift"; sourceTree = "<group>"; };
 		A14045DB27D4C76C0089E6E9 /* SpreadsheetView+UIScrollViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SpreadsheetView+UIScrollViewDelegate.swift"; sourceTree = "<group>"; };
+		A14045F527D4CC7B0089E6E9 /* StockTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTitleCell.swift; sourceTree = "<group>"; };
+		A14045F927D4D6DE0089E6E9 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
+		A14045FB27D4DB0E0089E6E9 /* Double+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+extension.swift"; sourceTree = "<group>"; };
 		A1C6638827D48B0A00C4C193 /* StockMain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C6638B27D48B0A00C4C193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1C6639227D48B0A00C4C193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,6 +103,7 @@
 		A14045C027D4BF2C0089E6E9 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				A14045F527D4CC7B0089E6E9 /* StockTitleCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -105,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				A14045C327D4C76C0089E6E9 /* SpreadsheetView */,
+				A14045F927D4D6DE0089E6E9 /* Then.swift */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				A1C663A327D49CB300C4C193 /* Date+extension.swift */,
+				A14045FB27D4DB0E0089E6E9 /* Double+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -286,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A14045FA27D4D6DE0089E6E9 /* Then.swift in Sources */,
 				A14045DF27D4C76C0089E6E9 /* Address.swift in Sources */,
 				A14045E827D4C76C0089E6E9 /* LayoutEngine.swift in Sources */,
 				A14045BF27D4B2360089E6E9 /* AError.swift in Sources */,
@@ -295,6 +305,7 @@
 				A14045EF27D4C76C0089E6E9 /* SpreadsheetViewDelegate.swift in Sources */,
 				A1C663A727D49D6900C4C193 /* TrackListViewController.swift in Sources */,
 				A14045DE27D4C76C0089E6E9 /* Location.swift in Sources */,
+				A14045F727D4CC7B0089E6E9 /* StockTitleCell.swift in Sources */,
 				A14045EB27D4C76C0089E6E9 /* ScrollView.swift in Sources */,
 				A14045E627D4C76C0089E6E9 /* SpreadsheetView+UIViewHierarchy.swift in Sources */,
 				A14045E227D4C76C0089E6E9 /* SpreadsheetViewDataSource.swift in Sources */,
@@ -304,6 +315,7 @@
 				A14045EC27D4C76C0089E6E9 /* SpreadsheetView.swift in Sources */,
 				A1C663A427D49CB300C4C193 /* Date+extension.swift in Sources */,
 				A14045F027D4C76C0089E6E9 /* ReuseQueue.swift in Sources */,
+				A14045FC27D4DB0E0089E6E9 /* Double+extension.swift in Sources */,
 				A14045DD27D4C76C0089E6E9 /* SpreadsheetView+UIScrollView.swift in Sources */,
 				A14045E127D4C76C0089E6E9 /* Cell.swift in Sources */,
 				A14045E327D4C76C0089E6E9 /* Borders.swift in Sources */,
