@@ -21,6 +21,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="88D-vt-1t5">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="h7M-AC-Jhz"/>
+                                    <constraint firstAttribute="width" secondItem="88D-vt-1t5" secondAttribute="height" multiplier="1:1" id="pwE-6K-tSE"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -28,11 +35,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="frk-LM-1zt" secondAttribute="trailing" id="8jr-D2-1GM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="frk-LM-1zt" secondAttribute="bottom" id="Gx3-pb-CcI"/>
                             <constraint firstItem="frk-LM-1zt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Po1-Us-xpf"/>
+                            <constraint firstItem="88D-vt-1t5" firstAttribute="centerY" secondItem="frk-LM-1zt" secondAttribute="centerY" id="cEA-fn-E3b"/>
+                            <constraint firstItem="88D-vt-1t5" firstAttribute="centerX" secondItem="frk-LM-1zt" secondAttribute="centerX" id="slO-9f-5DW"/>
                             <constraint firstItem="frk-LM-1zt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="w2d-jx-aVM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KCd-aH-uO2"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="88D-vt-1t5" id="pmO-Zx-N62"/>
                         <outlet property="sheetView" destination="frk-LM-1zt" id="xtI-3H-KaB"/>
                     </connections>
                 </viewController>

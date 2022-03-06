@@ -9,6 +9,7 @@ import UIKit
 
 class TrackListViewController: UIViewController {
     @IBOutlet weak var sheetView: SpreadsheetView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     private var updateIndexPaths: [Int] = []
     private var viewModel: StockViewModel = {
@@ -35,8 +36,11 @@ class TrackListViewController: UIViewController {
         sheetView.showsVerticalScrollIndicator = false
         sheetView.showsHorizontalScrollIndicator = false
         sheetView.bounces = false
+        loadingIndicator.startAnimating()
         viewModel.getAllStockItems {
             self.sheetView.reloadData()
+            self.loadingIndicator.stopAnimating()
+            self.loadingIndicator.isHidden = true
         }
         viewModel.onUpdate = { indexs in
             self.updateIndexPaths = indexs

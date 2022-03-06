@@ -62,6 +62,14 @@ public class StockViewModel {
                 self.allStockItems = items
             case .failure(let error):
                 debugPrint(error)
+                do {
+                    var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    url = url.appendingPathComponent("stock.json")
+                    let rawData = try Data(contentsOf: url)
+                    self.allStockItems = try JSONDecoder().decode([RawStockItem].self, from: rawData)
+                } catch let error {
+                    debugPrint(error)
+                }
             }
             complete()
         }
@@ -74,6 +82,7 @@ public class StockViewModel {
                 do {
                     var url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                     url = url.appendingPathComponent("stock.json")
+                    debugPrint("download process done at: \(url)")
                     try data.write(to: url, options: .completeFileProtection)
                     let rawData = try Data(contentsOf: url)
                     let items = try JSONDecoder().decode([RawStockItem].self, from: rawData)
