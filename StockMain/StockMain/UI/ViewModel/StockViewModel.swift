@@ -11,22 +11,25 @@ import Alamofire
 public class StockViewModel {
     private let jsonFormatRequest: String = "https://quality.data.gov.tw/dq_download_json.php?nid=11549&md5_url=da96048521360db9f23a2b47c9c31155"
     
-    private var allStockItems: [RawStockItem] = [] {
-        didSet {
-            let unsortedList = allStockItems.filter { defaultCompanyList.contains($0.code) }
-            displayStoackItems = unsortedList.sorted(by: { defaultCompanyList.firstIndex(of: $0.code)! < defaultCompanyList.firstIndex(of: $1.code)!}).map{ $0.displaySotckItem }
-            dataSource.append(contentsOf: displayStoackItems)
-        }
-    }
-    
-    private var displayStoackItems: [DisplayStockItem] = []
-    
+    public var onUpdate: (() -> Void)?
+    public var timer = Timer()
     public var dataSource: [DisplayStockItem] = [DisplayStockItem(code: "代號",
                                                                   title: "商品",
                                                                   finalPrice: "成交",
                                                                   dawnRaid: "漲跌",
                                                                   range: "幅度",
-                                                                  closingPrice: "昨收價")]
+                                                                  closingPrice: "昨收價",
+                                                                  updateTime: "更新時間")]
+    
+    private var timerInterval: TimeInterval = 1
+    private var allStockItems: [RawStockItem] = [] {
+        didSet {
+            let unsortedList = allStockItems.filter { defaultCompanyList.contains($0.code) }
+            let sortedList = unsortedList.sorted(by: { defaultCompanyList.firstIndex(of: $0.code)! < defaultCompanyList.firstIndex(of: $1.code)!}).map{ $0.displaySotckItem }
+            dataSource.append(contentsOf: sortedList)
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(random), userInfo: nil, repeats: true)
+        }
+    }
     
     private let defaultCompanyList: [String] = {
         do {
@@ -38,7 +41,11 @@ public class StockViewModel {
         }
     }()
     
-    init() {
+    @objc func random() {
+        for index in 1...(dataSource.count - 1) {
+            dataSource[index].random()
+        }
+        onUpdate?()
     }
     
     public func getAllStockItems(complete: @escaping () -> Void) {
@@ -72,4 +79,7 @@ public class StockViewModel {
             }
         }
     }
+    
+    init() { }
+
 }

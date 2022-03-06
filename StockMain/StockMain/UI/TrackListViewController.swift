@@ -14,26 +14,26 @@ class TrackListViewController: UIViewController {
         return StockViewModel()
     }()
     
-    
-//    private var dataSource: [DisplayStockItem] = [DisplayStockItem(code: "代號",
-//                                                                   title: "商品",
-//                                                                   finalPrice: "成交",
-//                                                                   dawnRaid: "漲跌",
-//                                                                   range: "幅度",
-//                                                                   closingPrice: "昨收價")]
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.timer.invalidate()
+    }
+
     private func setupUI() {
         sheetView.dataSource = self
-//        sheetView.register(UINib(nibName: "StockTitleCell", bundle: .main), forCellWithReuseIdentifier: StockTitleCell.id)
         sheetView.register(StockTitleCell.self, forCellWithReuseIdentifier: StockTitleCell.id)
+        sheetView.showsVerticalScrollIndicator = false
+        sheetView.showsHorizontalScrollIndicator = false
         sheetView.bounces = false
         viewModel.getAllStockItems {
-//            self.dataSource.append(contentsOf: self.viewModel.displayStoackItems)
-            
+            self.sheetView.reloadData()
+        }
+        viewModel.onUpdate = {
             self.sheetView.reloadData()
         }
     }
@@ -50,11 +50,10 @@ extension TrackListViewController: SpreadsheetViewDataSource {
     }
     
     func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int { //行
-        return 6
+        return 7
     }
     
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {   //列
-//        return viewModel.displayStoackItems.count
         return viewModel.dataSource .count
     }
     
@@ -63,7 +62,6 @@ extension TrackListViewController: SpreadsheetViewDataSource {
     }
     
     func frozenRows(in spreadsheetView: SpreadsheetView) -> Int {   //列
-//        return viewModel.displayStoackItems.isEmpty ? 0 : 1
         return viewModel.dataSource.count == 1 ? 0 : 1
     }
     
@@ -78,10 +76,9 @@ extension TrackListViewController: SpreadsheetViewDataSource {
             case 3:     cell.config(with: item.dawnRaid, textColor: item.isLow ? .green : .red, isTitle: isTitle)
             case 4:     cell.config(with: item.range, textColor: item.isLow ? .green : .red, isTitle: isTitle)
             case 5:     cell.config(with: item.closingPrice, isTitle: isTitle)
+            case 6:     cell.config(with: item.updateTime, isTitle: isTitle)
             default:    break
             }
-            
-            
             return cell
         }
         return nil

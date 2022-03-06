@@ -28,13 +28,13 @@ public struct RawStockItem {
         let dawnRaid = finalPrice - closingPriceDouble
         let range = (dawnRaid / closingPriceDouble) * 100
         
-        
         return DisplayStockItem(code: code,
                                 title: name,
                                 finalPrice: String(format: "%.2f", finalPrice),
                                 dawnRaid: String(format: "%.2f", dawnRaid),
                                 range: String(format: "%.2f%%", range),
-                                closingPrice: closingPrice)
+                                closingPrice: closingPrice,
+                                updateTime: Date().shortString)
     }
 }
 
@@ -61,22 +61,42 @@ public struct DisplayStockItem {
     var dawnRaid: String        //漲跌
     var range: String           //幅度
     let closingPrice: String    //昨收價
+    var updateTime: String      //更新時間
     
     public init(code: String,
                 title: String,
                 finalPrice: String,
                 dawnRaid: String,
                 range: String,
-                closingPrice: String) {
+                closingPrice: String,
+                updateTime: String) {
         self.code = code
         self.title = title
         self.finalPrice = finalPrice
         self.dawnRaid = dawnRaid
         self.range = range
         self.closingPrice = closingPrice
+        self.updateTime = updateTime
     }
     
     public var isLow: Bool {
         return dawnRaid.hasPrefix("-")
+    }
+    
+    mutating func random() {
+        guard Int.random(in: 1...2)/2 == 0 else { return }
+        
+        let closingPriceDouble = Double(closingPrice) ?? 0
+        let lowestPrice = (closingPriceDouble * 0.9)
+        let highestPrice = (closingPriceDouble * 1.1)
+        
+        let finalPrice = Double.random(in: lowestPrice...highestPrice)
+        let dawnRaid = finalPrice - closingPriceDouble
+        let range = (dawnRaid / closingPriceDouble) * 100
+        
+        self.finalPrice = String(format: "%.2f", finalPrice)
+        self.dawnRaid = String(format: "%.2f", dawnRaid)
+        self.range = String(format: "%.2f%%", range)
+        self.updateTime = Date().shortString
     }
 }

@@ -13,7 +13,7 @@ extension Date {
         formatter.locale = Locale.current
         formatter.timeZone = TimeZone.current
         formatter.calendar = Calendar.current
-        formatter.dateFormat = "yyyyMMdd"
+        formatter.dateFormat = "hh:mm:ss"
         return formatter.string(from: self)
     }
 }
